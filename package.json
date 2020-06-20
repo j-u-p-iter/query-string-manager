@@ -1,6 +1,6 @@
 {
   "name": "@j.u.p.iter/query-string-manager",
-  "version": "0.0.1",
+  "version": "0.0.0-semantically-released",
   "description": "Tool to manage query string in the browser",
   "main": "dist/lib/query-string-manager.cjs.js",
   "module": "dist/lib/query-string-manager.esm.js",
