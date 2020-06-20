@@ -1,0 +1,26 @@
+{
+  "name": "@j.u.p.iter/query-string-manager",
+  "version": "0.0.1",
+  "description": "Tool to manage query string in the browser",
+  "main": "dist/lib/query-string-manager.cjs.js",
+  "module": "dist/lib/query-string-manager.esm.js",
+  "umd:main": "dist/lib/query-string-manager.umd.min.js",
+  "repository": "git@github.com:j-u-p-iter/query-string-manager.git",
+  "author": "Leontyev Kirill (j.u.p.iter) <pn79122821224@gmail.com> (http://j-u-p-iter.ru)",
+  "license": "MIT",
+  "scripts": {
+    "commit": "jupiter-scripts precommit --allowJs",
+    "build": "jupiter-scripts build --bundle",
+    "start": "yarn run build --watch",
+    "lint": "jupiter-scripts lint --format codeFrame",
+    "lint:fix": "yarn run lint --fix",
+    "test": "jupiter-scripts test"
+  },
+  "devDependencies": {
+    "@j.u.p.iter/jupiter-scripts": "1.14.1"
+  },
+  "dependencies": {
+    "qs": "^6.9.4",
+    "ramda": "^0.27.0"
+  }
+}
