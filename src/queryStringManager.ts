@@ -20,8 +20,8 @@ export const createQueryStringManager: QueryStringManager = (
   const getOriginalURL = () =>
     `${window.location.pathname}${window.location.search}`;
 
-  const setParams = paramsToSet => {
-    const [baseURL, searchString] = getOriginalURL().split("?");
+  const setParams = (paramsToSet, originalURL = getOriginalURL()) => {
+    const [baseURL, searchString] = originalURL.split("?");
 
     const searchObject = searchString ? qs.parse(searchString) : {};
 
@@ -37,8 +37,8 @@ export const createQueryStringManager: QueryStringManager = (
     return resultURL;
   };
 
-  const omitParams = paramsToOmit => {
-    const [baseURL, searchString] = getOriginalURL().split("?");
+  const omitParams = (paramsToOmit, originalURL = getOriginalURL()) => {
+    const [baseURL, searchString] = originalURL.split("?");
 
     if (!searchString) {
       return baseURL;

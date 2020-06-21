@@ -21,6 +21,7 @@ describe("queryStringManager", () => {
 
   afterEach(() => {
     (window.history.replaceState as any).mockClear();
+    (window.history.pushState as any).mockClear();
   });
 
   describe("setParams(paramsToAdd)", () => {
@@ -89,6 +90,26 @@ describe("queryStringManager", () => {
       expect(window.history.pushState).toHaveBeenCalledTimes(1);
       expect(window.history.pushState).toHaveBeenCalledWith({}, "", resultUrl);
     });
+
+    it("works properly with url, passed in arguments", () => {
+      const resultUrl = queryStringManager.setParams(
+        {
+          param1: "value1",
+          param2: "value2"
+        },
+        "/someNewPathName?someNewParam=someNewValue"
+      );
+
+      expect(resultUrl).toBe(
+        "/someNewPathName?someNewParam=someNewValue&param1=value1&param2=value2"
+      );
+      expect(window.history.replaceState).toHaveBeenCalledTimes(1);
+      expect(window.history.replaceState).toHaveBeenCalledWith(
+        {},
+        "",
+        resultUrl
+      );
+    });
   });
 
   describe("removeQueryString(paramsToRemove)", () => {
@@ -127,6 +148,21 @@ describe("queryStringManager", () => {
 
       expect(resultUrl).toBe("somePathName");
       expect(window.history.replaceState).toHaveBeenCalledTimes(0);
+    });
+
+    it("works properly with url, passed in arguments", () => {
+      const resultUrl = queryStringManager.omitParams(
+        ["param1"],
+        "/someNewPathName?param1=value1&param2=value2"
+      );
+
+      expect(resultUrl).toBe("/someNewPathName?param2=value2");
+      expect(window.history.replaceState).toHaveBeenCalledTimes(1);
+      expect(window.history.replaceState).toHaveBeenCalledWith(
+        {},
+        "",
+        resultUrl
+      );
     });
   });
 });
